@@ -11,6 +11,7 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Collection;
 import java.util.List;
 
 public class MarcaTest {
@@ -36,7 +37,7 @@ public class MarcaTest {
     @After
     public void tearDown() {
 
-        List<Marca> marcas = marcaDAO.buscarTodos();
+        Collection<Marca> marcas = marcaDAO.buscarTodos();
         for (Marca marca : marcas) {
             List<Carro> carros = marca.getCarros();
             for (Carro carro : carros) {
@@ -98,7 +99,7 @@ public class MarcaTest {
         }
 
         // buscar marcas criadas no DB
-        List<Marca> marcas = marcaDAO.buscarTodos();
+        Collection<Marca> marcas = marcaDAO.buscarTodos();
 
         // a lista de marcas nao pode ser nula e deve conter 2 items na lista
         Assert.assertNotNull(marcas);

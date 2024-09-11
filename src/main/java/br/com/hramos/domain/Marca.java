@@ -6,7 +6,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "TB_MARCA")
-public class Marca {
+public class Marca implements Persistent{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "marca_seq")
