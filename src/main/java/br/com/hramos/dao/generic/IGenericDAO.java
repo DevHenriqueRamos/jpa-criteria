@@ -9,6 +9,6 @@ public interface IGenericDAO<T extends Persistent>{
     public T cadastrar(T entity);
     public void atualizar(T entity);
     public void remover(T entity);
-    public T buscarPorCodigo(String codigo);
+    public T buscar(String codigo);
     public Collection<T> buscarTodos();
 }

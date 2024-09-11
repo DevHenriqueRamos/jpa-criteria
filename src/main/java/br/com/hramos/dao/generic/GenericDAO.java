@@ -86,7 +86,7 @@ public abstract class GenericDAO<T extends Persistent> implements IGenericDAO<T>
     }
 
     @Override
-    public T buscarPorCodigo(String codigo) {
+    public T buscar(String codigo) {
         EntityManager entityManager = getEntityManager();
         T entity = null;
 
@@ -101,7 +101,10 @@ public abstract class GenericDAO<T extends Persistent> implements IGenericDAO<T>
                 root.join("carros", JoinType.INNER);
             }
 
-            query.select(root).where(builder.equal(root.get("codigo"), codigo));
+            // Se a classe for do tipo Marca busca por codigo se nao buscar por uma placa
+            String classKey = getClassType() == Marca.class ? "codigo" : "placa";
+
+            query.select(root).where(builder.equal(root.get(classKey), codigo));
 
             entity = entityManager.createQuery(query).getSingleResult();
         } finally {

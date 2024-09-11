@@ -59,7 +59,7 @@ public class MarcaTest {
 
         criarCarro(marca, "brc4488");
 
-        //checar se o produto é recebido na variavel "marca" e tem agora um id
+        //checar se a marca é recebido na variavel "marca" e tem agora um id
         Assert.assertNotNull(marca);
         Assert.assertNotNull(marca.getId());
     }
@@ -78,7 +78,7 @@ public class MarcaTest {
         criarCarro(marca, "brc4488");
 
         // buscar marca criada no DB
-        Marca marcaConsultada = marcaDAO.buscarPorCodigo(marca.getCodigo());
+        Marca marcaConsultada = marcaDAO.buscar(marca.getCodigo());
 
         // marca consultada nao deve ser null e o id de marca e marcaConsultada devem ser o mesmo
         Assert.assertNotNull(marcaConsultada);
@@ -126,7 +126,7 @@ public class MarcaTest {
         marcaDAO.atualizar(marca);
 
         // buscar marca atualizada no DB
-        Marca marcaConsultada = marcaDAO.buscarPorCodigo(marca.getCodigo());
+        Marca marcaConsultada = marcaDAO.buscar(marca.getCodigo());
 
         // marca consultada deve ter o nome FORD e o mesmo id de marca
         Assert.assertEquals("FORD", marcaConsultada.getNome());
@@ -155,6 +155,6 @@ public class MarcaTest {
         marcaDAO.remover(marca);
 
         // buscar marca atualizada no DB
-        marcaDAO.buscarPorCodigo(marca.getCodigo());
+        marcaDAO.buscar(marca.getCodigo());
     }
 }
