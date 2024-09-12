@@ -6,12 +6,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "TB_MARCA")
-public class Marca implements Persistent{
+@Table(name = "TB_PECA")
+public class Peca implements Persistent{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "marca_seq")
-    @SequenceGenerator(name = "marca_seq", sequenceName = "sq_marca", initialValue = 1, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "peca_seq")
+    @SequenceGenerator(name = "peca_seq", sequenceName = "sq_peca", initialValue = 1, allocationSize = 1)
     private Long id;
 
     @Column(name = "CODIGO", length = 10, nullable = false, unique = true)
@@ -20,8 +20,8 @@ public class Marca implements Persistent{
     @Column(name = "NOME", length = 50, nullable = false)
     private String nome;
 
-    @OneToMany(mappedBy = "marca")
-    private Set<Carro> carros = new HashSet<>();
+    @ManyToMany(mappedBy = "pecas")
+    private Set<Carro> carros = new HashSet<Carro>();
 
     public Long getId() {
         return id;

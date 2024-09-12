@@ -12,7 +12,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Collection;
-import java.util.List;
+import java.util.Set;
 
 public class MarcaTest {
 
@@ -39,7 +39,7 @@ public class MarcaTest {
 
         Collection<Marca> marcas = marcaDAO.buscarTodos();
         for (Marca marca : marcas) {
-            List<Carro> carros = marca.getCarros();
+            Set<Carro> carros = marca.getCarros();
             for (Carro carro : carros) {
                 carroDAO.remover(carro);
             }

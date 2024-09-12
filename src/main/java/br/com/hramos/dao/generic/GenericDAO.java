@@ -4,6 +4,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.criteria.*;
+import main.java.br.com.hramos.domain.Carro;
 import main.java.br.com.hramos.domain.Marca;
 import main.java.br.com.hramos.domain.Persistent;
 
@@ -102,7 +103,7 @@ public abstract class GenericDAO<T extends Persistent> implements IGenericDAO<T>
             }
 
             // Se a classe for do tipo Marca busca por codigo se nao buscar por uma placa
-            String classKey = getClassType() == Marca.class ? "codigo" : "placa";
+            String classKey = getClassType() == Carro.class ? "placa" : "codigo";
 
             query.select(root).where(builder.equal(root.get(classKey), codigo));
 

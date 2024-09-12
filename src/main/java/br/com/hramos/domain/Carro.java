@@ -2,6 +2,9 @@ package main.java.br.com.hramos.domain;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "TB_CARRO")
 public class Carro implements Persistent {
@@ -25,6 +28,14 @@ public class Carro implements Persistent {
         foreignKey = @ForeignKey(name = "fk_marca_matricula"),
         referencedColumnName = "id", nullable = false)
     private Marca marca;
+
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+            name = "TB_PECA_CARRO",
+            joinColumns = { @JoinColumn(name = "peca_id") },
+            inverseJoinColumns = { @JoinColumn(name = "carro_id") }
+    )
+    private Set<Peca> pecas = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -64,5 +75,13 @@ public class Carro implements Persistent {
 
     public void setMarca(Marca marca) {
         this.marca = marca;
+    }
+
+    public Set<Peca> getPecas() {
+        return pecas;
+    }
+
+    public void setPecas(Set<Peca> pecas) {
+        this.pecas = pecas;
     }
 }
